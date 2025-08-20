@@ -7,6 +7,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import matplotlib
 matplotlib.use('Agg')  # Non-interactive backend for server environments
+from matplotlib import patches
 import seaborn as sns
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, confusion_matrix
 from sklearn.model_selection import train_test_split
@@ -20,6 +21,9 @@ import warnings
 warnings.filterwarnings('ignore')
 
 tf.config.run_functions_eagerly(True)
+
+# Aesthetic settings for cleaner, more readable plots
+sns.set_theme(context='notebook', style='white', palette='deep', font_scale=1.1)
 
 class XRayClassifier:
     def __init__(self, config=None):
@@ -252,7 +256,7 @@ class XRayClassifier:
         self.logger.info(f"Generating sample predictions plot for {model_name}...")
         
         fig, axes = plt.subplots(2, 4, figsize=(16, 8))
-        fig.suptitle(f'{model_name} - Sample vs Predicted Results', fontsize=16)
+        fig.suptitle(f'{model_name} - Sample vs Predicted Results', fontsize=18, fontweight='bold')
         
         sample_indices = np.random.choice(len(test_df), n_samples, replace=False)
         
@@ -273,17 +277,34 @@ class XRayClassifier:
                 axes[row, col].text(0.5, 0.5, 'Image\nNot\nAvailable', 
                                   ha='center', va='center', transform=axes[row, col].transAxes)
             
-            title = f'Actual: {"Fractured" if actual == 1 else "Normal"}\n'
-            title += f'Pred: {"Fractured" if predicted == 1 else "Normal"}\n'
-            title += f'Conf: {confidence:.3f}'
-            axes[row, col].set_title(title, fontsize=10)
+            # Determine correctness
+            is_correct = (actual == predicted)
+            color = '#2ca02c' if is_correct else '#d62728'  # seaborn-friendly green/red
+
+            # Turn off axis ticks and frames
             axes[row, col].axis('off')
-            
-            color = 'green' if actual == predicted else 'red'
-            for spine in axes[row, col].spines.values():
-                spine.set_edgecolor(color)
-                spine.set_linewidth(3)
+
+            # Draw a bold colored border using axes spines (green for correct, red for wrong)
+            for side in ['top', 'bottom', 'left', 'right']:
+                spine = axes[row, col].spines[side]
                 spine.set_visible(True)
+                spine.set_edgecolor(color)
+                spine.set_linewidth(5)
+
+            # Add a prominent badge (check or cross) in the corner
+            badge = '✓' if is_correct else '✗'
+            axes[row, col].text(0.06, 0.88, badge,
+                                transform=axes[row, col].transAxes,
+                                fontsize=28, fontweight='bold',
+                                color=color,
+                                bbox=dict(boxstyle='circle,pad=0.3', facecolor='white', alpha=0.7, edgecolor=color, linewidth=2))
+
+            # Add a clean caption below the image with actual/pred/confidence
+            actual_label = 'Fractured' if actual == 1 else 'Normal'
+            predicted_label = 'Fractured' if predicted == 1 else 'Normal'
+            caption = f'Actual: {actual_label} | Pred: {predicted_label} | Conf: {confidence:.3f}'
+            axes[row, col].text(0.5, -0.06, caption, transform=axes[row, col].transAxes,
+                                ha='center', va='top', fontsize=10)
         
         plt.tight_layout()
         filename = f'output/{model_name}_sample_predictions.png'
@@ -460,21 +481,21 @@ class XRayClassifier:
         return self.results
 
 if __name__ == "__main__":
-    # demo_config = {
-    #     'epochs': 1,
-    #     'use_subset': 0.01, # 1% of data
-    #     'batch_size': 32,
-    #     'models': [ 'MobileNetV2']
-    # }
-
-    # classifier = XRayClassifier(config=demo_config)
-
-    full_scale_config = {
-        'epochs': 10,
-        'use_subset': 1.0,
+    demo_config = {
+        'epochs': 1,
+        'use_subset': 0.001, # 1% of data
         'batch_size': 32,
         'models': [ 'InceptionV3', 'ResNet50', 'VGG16', 'DenseNet121', 'MobileNetV2']
     }
-    classifier = XRayClassifier(config=full_scale_config)
+
+    classifier = XRayClassifier(config=demo_config)
+
+    # full_scale_config = {
+    #     'epochs': 10,
+    #     'use_subset': 1.0, # 100% of data
+    #     'batch_size': 32,
+    #     'models': [ 'InceptionV3', 'ResNet50', 'VGG16', 'DenseNet121', 'MobileNetV2']
+    # }
+    # classifier = XRayClassifier(config=full_scale_config)
 
     results = classifier.run_experiment()
