@@ -462,13 +462,13 @@ class XRayClassifier:
 if __name__ == "__main__":
     # demo_config = {
     #     'epochs': 1,
-    #     'use_subset': 0.01,
+    #     'use_subset': 0.015,
     #     'batch_size': 32,
     #     'models': [ 'MobileNetV2']
     # }
 
     # classifier = XRayClassifier(config=demo_config)
-    
+
     full_scale_config = {
         'epochs': 1,
         'use_subset': 1.0,
