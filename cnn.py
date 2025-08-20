@@ -11,11 +11,11 @@ import seaborn as sns
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, confusion_matrix
 from sklearn.model_selection import train_test_split
 import tensorflow as tf
-from tensorflow.keras import models, layers
-from tensorflow.keras.applications import InceptionV3, ResNet50, VGG16, DenseNet121, MobileNetV2
-from tensorflow.keras.preprocessing.image import ImageDataGenerator, load_img
-from tensorflow.keras.optimizers import Adam
-from tensorflow.keras.callbacks import EarlyStopping, ReduceLROnPlateau
+from tensorflow.keras import models, layers # type: ignore
+from tensorflow.keras.applications import InceptionV3, ResNet50, VGG16, DenseNet121, MobileNetV2 # type: ignore
+from tensorflow.keras.preprocessing.image import ImageDataGenerator, load_img # type: ignore
+from tensorflow.keras.optimizers import Adam # type: ignore
+from tensorflow.keras.callbacks import EarlyStopping, ReduceLROnPlateau # type: ignore
 import warnings
 warnings.filterwarnings('ignore')
 
@@ -481,7 +481,7 @@ if __name__ == "__main__":
         'epochs': 1,
         'use_subset': 0.01,
         'batch_size': 32,
-        'models': ['InceptionV3']
+        'models': ['VGG16', 'MobileNetV2', 'DenseNet121']
     }
     
     classifier = XRayClassifier(config=custom_config)
