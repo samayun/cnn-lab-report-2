@@ -21,11 +21,12 @@ python -m cnn # to check does the code works? test 1% data,1 epoch
 Per-model visuals
 |  Sample Predictions | Evaluation Figure | 
 |  --- | --- |
+| ![MobileNetV2 Samples](./output/MobileNetV2_sample_predictions.png) | ![MobileNetV2 Evaluation](./output/MobileNetV2_evaluation_figure.png) |
 | ![InceptionV3 Samples](./output/InceptionV3_sample_predictions.png) | ![InceptionV3 Evaluation](./output/InceptionV3_evaluation_figure.png) |
 | ![ResNet50 Samples](./output/ResNet50_sample_predictions.png) | ![ResNet50 Evaluation](./output/ResNet50_evaluation_figure.png) |
 | ![VGG16 Samples](./output/VGG16_sample_predictions.png) | ![VGG16 Evaluation](./output/VGG16_evaluation_figure.png) |
 | ![DenseNet121 Samples](./output/DenseNet121_sample_predictions.png) | ![DenseNet121 Evaluation](./output/DenseNet121_evaluation_figure.png) |
-| ![MobileNetV2 Samples](./output/MobileNetV2_sample_predictions.png) | ![MobileNetV2 Evaluation](./output/MobileNetV2_evaluation_figure.png) |
+
 
 
 ## 🏗️ Architecture

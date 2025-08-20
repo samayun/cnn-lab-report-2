@@ -291,23 +291,7 @@ class XRayClassifier:
         plt.close()
         self.logger.info(f"Sample predictions saved: {filename}")
         
-    def plot_confusion_matrix(self, model_name, metrics):
-        self.logger.info(f"Generating confusion matrix for {model_name}...")
-        
-        plt.figure(figsize=(8, 6))
-        sns.heatmap(metrics['confusion_matrix'], annot=True, fmt='d', cmap='Blues',
-                   xticklabels=['Non-Fractured', 'Fractured'],
-                   yticklabels=['Non-Fractured', 'Fractured'])
-        plt.title(f'{model_name} Confusion Matrix\n'
-                 f'Accuracy: {metrics["accuracy"]:.4f} | F1-Score: {metrics["f1_score"]:.4f}')
-        plt.ylabel('Actual')
-        plt.xlabel('Predicted')
-        
-        filename = f'output/{model_name}_confusion_matrix.png'
-        plt.savefig(filename, dpi=300, bbox_inches='tight')
-        plt.close()
-        self.logger.info(f"Confusion matrix saved: {filename}")
-        
+
     def create_evaluation_figure(self, model_name, metrics):
         self.logger.info(f"Creating evaluation figure for {model_name}...")
         
@@ -453,7 +437,6 @@ class XRayClassifier:
                 self.results[model_name] = metrics
                 
                 self.plot_sample_predictions(test_df, model_name, metrics)
-                self.plot_confusion_matrix(model_name, metrics)
                 self.create_evaluation_figure(model_name, metrics)
                 
             except Exception as e:
