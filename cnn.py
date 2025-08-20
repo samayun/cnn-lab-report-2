@@ -23,14 +23,13 @@ tf.config.run_functions_eagerly(True)
 
 class XRayClassifier:
     def __init__(self, config=None):
-        # Default hyperparameters
         default_config = {
             'img_size': (224, 224),
             'batch_size': 16,
             'epochs': 3,
             'learning_rate': 0.001,
             'dropout_rate': 0.5,
-            'use_subset': 0.02,  # 2% of data for reasonable training time
+            'use_subset': 0.02,
             'models': ['InceptionV3', 'ResNet50', 'VGG16'],
             'patience': 2,
             'min_lr': 1e-7,
@@ -39,7 +38,6 @@ class XRayClassifier:
         
         self.config = {**default_config, **(config or {})}
         
-        # Setup logging
         self.setup_logging()
         
         self.log_hyperparameters()
@@ -48,10 +46,9 @@ class XRayClassifier:
         self.training_histories = {}
         
     def setup_logging(self):
-        timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+        timestamp = datetime.now().strftime("%d-%m-%Y")
         log_filename = f"log-{timestamp}.log"
         
-        # Configure logging
         logging.basicConfig(
             level=logging.INFO,
             format='%(asctime)s - %(levelname)s - %(message)s',
@@ -85,7 +82,6 @@ class XRayClassifier:
         fractured_files = [f for f in os.listdir(fractured_dir) if f.endswith('.jpg')]
         non_fractured_files = [f for f in os.listdir(non_fractured_dir) if f.endswith('.jpg')]
         
-        # Apply subset
         n_fractured = int(len(fractured_files) * self.config['use_subset'])
         n_non_fractured = int(len(non_fractured_files) * self.config['use_subset'])
         
@@ -114,7 +110,6 @@ class XRayClassifier:
             file_paths, labels, test_size=0.2, random_state=42, stratify=labels
         )
         
-        # Data augmentation for training
         train_datagen = ImageDataGenerator(
             rescale=1./255,
             rotation_range=15,
@@ -126,7 +121,6 @@ class XRayClassifier:
             fill_mode='nearest'
         )
         
-        # Only rescaling for test data
         test_datagen = ImageDataGenerator(rescale=1./255)
         
         train_df = pd.DataFrame({
@@ -229,7 +223,6 @@ class XRayClassifier:
         y_pred = (predictions > 0.5).astype(int)
         y_true = test_gen.classes
         
-        # Calculate metrics
         accuracy = accuracy_score(y_true, y_pred)
         precision = precision_score(y_true, y_pred, average='binary')
         recall = recall_score(y_true, y_pred, average='binary')
@@ -286,7 +279,6 @@ class XRayClassifier:
             axes[row, col].set_title(title, fontsize=10)
             axes[row, col].axis('off')
             
-            # Color border based on correctness
             color = 'green' if actual == predicted else 'red'
             for spine in axes[row, col].spines.values():
                 spine.set_edgecolor(color)
@@ -294,7 +286,7 @@ class XRayClassifier:
                 spine.set_visible(True)
         
         plt.tight_layout()
-        filename = f'{model_name}_sample_predictions.png'
+        filename = f'output/{model_name}_sample_predictions.png'
         plt.savefig(filename, dpi=300, bbox_inches='tight')
         plt.close()
         self.logger.info(f"Sample predictions saved: {filename}")
@@ -311,43 +303,109 @@ class XRayClassifier:
         plt.ylabel('Actual')
         plt.xlabel('Predicted')
         
-        filename = f'{model_name}_confusion_matrix.png'
+        filename = f'output/{model_name}_confusion_matrix.png'
         plt.savefig(filename, dpi=300, bbox_inches='tight')
         plt.close()
         self.logger.info(f"Confusion matrix saved: {filename}")
         
-    def plot_model_comparison(self):
-        self.logger.info("Generating model comparison plots...")
+    def create_evaluation_figure(self, model_name, metrics):
+        self.logger.info(f"Creating evaluation figure for {model_name}...")
         
-        models = list(self.results.keys())
-        metrics = ['accuracy', 'precision', 'recall', 'f1_score']
+        fig, axes = plt.subplots(1, 2, figsize=(15, 6))
         
-        fig, axes = plt.subplots(2, 2, figsize=(12, 10))
-        fig.suptitle('Model Performance Comparison', fontsize=16)
+        sns.heatmap(metrics['confusion_matrix'], annot=True, fmt='d', cmap='Blues',
+                   xticklabels=['Non-Fractured', 'Fractured'],
+                   yticklabels=['Non-Fractured', 'Fractured'], ax=axes[0])
+        axes[0].set_title(f'{model_name} Confusion Matrix')
+        axes[0].set_ylabel('Actual')
+        axes[0].set_xlabel('Predicted')
         
-        colors = ['skyblue', 'lightgreen', 'salmon', 'gold', 'lightcoral']
+        metric_names = ['Accuracy', 'Precision', 'Recall', 'F1-Score']
+        metric_values = [metrics['accuracy'], metrics['precision'], metrics['recall'], metrics['f1_score']]
+        colors = ['skyblue', 'lightgreen', 'salmon', 'gold']
         
-        for i, metric in enumerate(metrics):
-            row = i // 2
-            col = i % 2
-            
-            values = [self.results[model][metric] for model in models]
-            bars = axes[row, col].bar(models, values, color=colors[:len(models)])
-            
-            axes[row, col].set_title(f'{metric.capitalize().replace("_", "-")}')
-            axes[row, col].set_ylim(0, 1)
-            axes[row, col].set_ylabel('Score')
-            axes[row, col].tick_params(axis='x', rotation=45)
-            
-            for bar, value in zip(bars, values):
-                axes[row, col].text(bar.get_x() + bar.get_width()/2, bar.get_height() + 0.01,
-                                   f'{value:.3f}', ha='center', va='bottom')
+        bars = axes[1].bar(metric_names, metric_values, color=colors)
+        axes[1].set_title(f'{model_name} Performance Metrics')
+        axes[1].set_ylim(0, 1)
+        axes[1].set_ylabel('Score')
         
+        for bar, value in zip(bars, metric_values):
+            axes[1].text(bar.get_x() + bar.get_width()/2, bar.get_height() + 0.01,
+                       f'{value:.3f}', ha='center', va='bottom', fontweight='bold')
+        
+        plt.suptitle(f'{model_name} - Classification Results Evaluation', fontsize=16, fontweight='bold')
         plt.tight_layout()
-        filename = 'model_comparison.png'
+        
+        filename = f'output/{model_name}_evaluation_figure.png'
         plt.savefig(filename, dpi=300, bbox_inches='tight')
         plt.close()
-        self.logger.info(f"Model comparison saved: {filename}")
+        self.logger.info(f"Evaluation figure saved: {filename}")
+        
+    def create_grid_visualizations(self):
+        self.logger.info("Creating grid visualizations for README...")
+        
+        models = list(self.results.keys())
+        n_models = len(models)
+        
+        if n_models == 0:
+            return
+            
+        cols = min(3, n_models)
+        rows = (n_models + cols - 1) // cols
+        
+        fig_eval, axes_eval = plt.subplots(rows, cols, figsize=(cols*6, rows*4))
+        if n_models == 1:
+            axes_eval = [axes_eval]
+        elif rows == 1:
+            axes_eval = axes_eval if n_models > 1 else [axes_eval]
+        else:
+            axes_eval = axes_eval.flatten()
+        
+        fig_conf, axes_conf = plt.subplots(rows, cols, figsize=(cols*5, rows*4))
+        if n_models == 1:
+            axes_conf = [axes_conf]
+        elif rows == 1:
+            axes_conf = axes_conf if n_models > 1 else [axes_conf]
+        else:
+            axes_conf = axes_conf.flatten()
+        
+        for i, model_name in enumerate(models):
+            metrics = self.results[model_name]
+            
+            metric_names = ['Acc', 'Prec', 'Rec', 'F1']
+            metric_values = [metrics['accuracy'], metrics['precision'], metrics['recall'], metrics['f1_score']]
+            colors = ['skyblue', 'lightgreen', 'salmon', 'gold']
+            
+            bars = axes_eval[i].bar(metric_names, metric_values, color=colors)
+            axes_eval[i].set_title(f'{model_name}')
+            axes_eval[i].set_ylim(0, 1)
+            axes_eval[i].set_ylabel('Score')
+            
+            for bar, value in zip(bars, metric_values):
+                axes_eval[i].text(bar.get_x() + bar.get_width()/2, bar.get_height() + 0.01,
+                               f'{value:.3f}', ha='center', va='bottom', fontsize=9)
+            
+            sns.heatmap(metrics['confusion_matrix'], annot=True, fmt='d', cmap='Blues',
+                       xticklabels=['Non-Frac', 'Fractured'],
+                       yticklabels=['Non-Frac', 'Fractured'], ax=axes_conf[i],
+                       cbar=False)
+            axes_conf[i].set_title(f'{model_name}\nAcc: {metrics["accuracy"]:.3f}')
+        
+        for i in range(n_models, len(axes_eval)):
+            fig_eval.delaxes(axes_eval[i])
+            fig_conf.delaxes(axes_conf[i])
+        
+        fig_eval.suptitle('Model Performance Comparison', fontsize=16, fontweight='bold')
+        fig_eval.tight_layout()
+        fig_eval.savefig('output/models_evaluation_grid.png', dpi=300, bbox_inches='tight')
+        plt.close(fig_eval)
+        
+        fig_conf.suptitle('Confusion Matrices Comparison', fontsize=16, fontweight='bold')
+        fig_conf.tight_layout()
+        fig_conf.savefig('output/models_confusion_grid.png', dpi=300, bbox_inches='tight')
+        plt.close(fig_conf)
+        
+        self.logger.info("Grid visualizations saved to output directory")
         
     def log_evaluation_matrices(self):
         self.logger.info("")
@@ -363,7 +421,6 @@ class XRayClassifier:
             self.logger.info(f"Recall:    {metrics['recall']:.4f}")
             self.logger.info(f"F1-Score:  {metrics['f1_score']:.4f}")
             
-        # Classification result comparison
         self.logger.info("")
         self.logger.info("="*60)
         self.logger.info("CLASSIFICATION RESULT COMPARISON")
@@ -377,42 +434,35 @@ class XRayClassifier:
         self.logger.info("Starting X-Ray Fracture Classification Experiment")
         self.logger.info("="*60)
         
-        # Load data
         file_paths, labels = self.load_data()
         if file_paths is None:
             self.logger.error("Failed to load data. Exiting.")
             return None
             
-        # Create data generators
         train_gen, test_gen, test_df = self.create_data_generators(file_paths, labels)
         
-        # Train and evaluate each model
         for model_name in self.config['models']:
             self.logger.info(f"\n{'='*60}")
             self.logger.info(f"Processing {model_name}")
             self.logger.info(f"{'='*60}")
             
             try:
-                # Train model
                 model = self.train_model(model_name, train_gen, test_gen)
                 
-                # Evaluate model
                 metrics = self.evaluate_model(model, model_name, test_gen)
                 self.results[model_name] = metrics
                 
-                # Generate visualizations
                 self.plot_sample_predictions(test_df, model_name, metrics)
                 self.plot_confusion_matrix(model_name, metrics)
+                self.create_evaluation_figure(model_name, metrics)
                 
             except Exception as e:
                 self.logger.error(f"Error processing {model_name}: {e}")
                 continue
         
         if self.results:
-            # Generate comparison plots
-            self.plot_model_comparison()
+            self.create_grid_visualizations()
             
-            # Log final results
             self.log_evaluation_matrices()
             
             self.logger.info("\n🎯 Experiment completed successfully!")
@@ -427,11 +477,11 @@ class XRayClassifier:
         return self.results
 
 if __name__ == "__main__":
-    # Custom configuration (optional)
     custom_config = {
-        'epochs': 2,
-        'use_subset': 0.015,  # 1.5% of data
-        'models': ['InceptionV3', 'ResNet50', 'VGG16']
+        'epochs': 1,
+        'use_subset': 0.01,
+        'batch_size': 32,
+        'models': ['InceptionV3']
     }
     
     classifier = XRayClassifier(config=custom_config)

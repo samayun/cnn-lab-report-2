@@ -12,3 +12,5 @@ cnn_full_results.txt
 Augmented Dataset
 outputs
 Original Dataset
+*.log
+.claude

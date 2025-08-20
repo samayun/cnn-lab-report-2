@@ -17,14 +17,15 @@ python -m cnn # to check does the code works? test 1% data,1 epoch
 
 
 ## Output
-Sample VS Predicted Sampling
-![InceptionV3 Sample Qick CNN](./sample_vs_predicted.png)
 
-Training Result
-![Training Result](./training_history_original.png)
-
-InceptionV3 Confusion Matrix
-![InceptionV3 Confusion Matrix](./InceptionV3_confusion_matrix.png)
+Per-model visuals
+| Model | Sample Predictions | Evaluation Figure | 
+| --- | --- | --- |
+| InceptionV3 | ![InceptionV3 Samples](./output/InceptionV3_sample_predictions.png) | ![InceptionV3 Evaluation](./output/InceptionV3_evaluation_figure.png) |
+| ResNet50 | ![ResNet50 Samples](./output/ResNet50_sample_predictions.png) | ![ResNet50 Evaluation](./output/ResNet50_evaluation_figure.png) |
+| VGG16 | ![VGG16 Samples](./output/VGG16_sample_predictions.png) | ![VGG16 Evaluation](./output/VGG16_evaluation_figure.png) |
+| DenseNet121 | ![DenseNet121 Samples](./output/DenseNet121_sample_predictions.png) | ![DenseNet121 Evaluation](./output/DenseNet121_evaluation_figure.png) |
+| MobileNetV2 | ![MobileNetV2 Samples](./output/MobileNetV2_sample_predictions.png) | ![MobileNetV2 Evaluation](./output/MobileNetV2_evaluation_figure.png) |
 
 
 ## 🏗️ Architecture
@@ -137,7 +138,9 @@ python cnn.py
 - `log-YYYY-MM-DD_HH-MM-SS.log`: Detailed execution log with hyperparameters, training progress, and results
 - `{ModelName}_sample_predictions.png`: Sample prediction visualizations (8 images per model)
 - `{ModelName}_confusion_matrix.png`: Confusion matrices for each model
-- `model_comparison.png`: Performance comparison chart across all models
+- `{ModelName}_evaluation_figure.png`: Evaluation curves (accuracy, loss) per model
+- `models_evaluation_grid.png`: Performance comparison grid across all models
+- `models_confusion_grid.png`: Confusion matrices grid across all models
 
 ### Dependencies
 ```
