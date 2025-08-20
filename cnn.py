@@ -481,7 +481,7 @@ if __name__ == "__main__":
         'epochs': 1,
         'use_subset': 0.01,
         'batch_size': 32,
-        'models': ['VGG16', 'MobileNetV2', 'DenseNet121']
+        'models': [ 'MobileNetV2']
     }
     
     classifier = XRayClassifier(config=custom_config)
