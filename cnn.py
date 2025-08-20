@@ -460,12 +460,21 @@ class XRayClassifier:
         return self.results
 
 if __name__ == "__main__":
-    custom_config = {
-        'epochs': 1,
-        'use_subset': 0.01,
-        'batch_size': 32,
-        'models': [ 'MobileNetV2']
-    }
+    # demo_config = {
+    #     'epochs': 1,
+    #     'use_subset': 0.01,
+    #     'batch_size': 32,
+    #     'models': [ 'MobileNetV2']
+    # }
+
+    # classifier = XRayClassifier(config=demo_config)
     
-    classifier = XRayClassifier(config=custom_config)
+    full_scale_config = {
+        'epochs': 1,
+        'use_subset': 1.0,
+        'batch_size': 32,
+        'models': [ 'InceptionV3', 'ResNet50', 'VGG16', 'DenseNet121', 'MobileNetV2']
+    }
+    classifier = XRayClassifier(config=full_scale_config)
+
     results = classifier.run_experiment()
