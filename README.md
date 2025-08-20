@@ -7,8 +7,14 @@
 python3 -m venv ~/venv
 source ~/venv/bin/activate
 pip install -r requirements.txt
-
+python -m quick_cnn # to check does the code works?
+python -m full_cnn # to run model properly
 ```
+
+
+## Output
+
+![Training Result](./training_history_original.png)
 
 # Description
 This dataset comprises 9,000 images, evenly categorized into 2 distinct classes. It was developed for a computer vision thesis undertaken by postrgraduate students in Department of  Computer Science and Engineering. Netrokona University, Netrokona, Bangladesh. The collection features both original and augmented images, all uniformly resized to 512x512 pixels using high-quality LANCZOS interpolation to maintain visual clarity.

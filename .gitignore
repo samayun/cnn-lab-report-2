@@ -8,6 +8,7 @@ __pycache__
 *.pywz
 *.pyzw
 *.pyzwz
+cnn_full_results.txt
 Augmented Dataset
 outputs
 Original Dataset
