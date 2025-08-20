@@ -462,7 +462,7 @@ class XRayClassifier:
 if __name__ == "__main__":
     # demo_config = {
     #     'epochs': 1,
-    #     'use_subset': 0.015,
+    #     'use_subset': 0.01, # 1% of data
     #     'batch_size': 32,
     #     'models': [ 'MobileNetV2']
     # }
@@ -470,7 +470,7 @@ if __name__ == "__main__":
     # classifier = XRayClassifier(config=demo_config)
 
     full_scale_config = {
-        'epochs': 1,
+        'epochs': 10,
         'use_subset': 1.0,
         'batch_size': 32,
         'models': [ 'InceptionV3', 'ResNet50', 'VGG16', 'DenseNet121', 'MobileNetV2']

@@ -15,8 +15,36 @@ pip install -r requirements.txt
 python -m cnn # to check does the code works? test 1% data,1 epoch
 ```
 
+## 📁 Folder Structure
+
+![Folder Structure](./folder_structure.png)
+
+Repository layout
+```
+.
+├── Augmented Dataset/
+│   ├── Fractured/
+│   └── Non-Fractured/
+├── Original Dataset/
+│   ├── Fractured/
+│   └── Non-Fractured/
+├── output/
+│   ├── InceptionV3_*.png
+│   ├── ResNet50_*.png
+│   ├── models_evaluation_grid.png
+│   └── models_confusion_grid.png
+├── cnn.py
+├── requirements.txt
+└── README.md
+```
+
 
 ## Output
+
+All models at a glance
+![Models Evaluation Grid](./output/models_evaluation_grid.png)
+
+![Models Confusion Grid](./output/models_confusion_grid.png)
 
 Per-model visuals
 |  Sample Predictions | Evaluation Figure | 
@@ -132,11 +160,11 @@ pip install -r requirements.txt
 # Run classification experiment with default settings
 python cnn.py
 
-# Output will be streamed to console and saved to log-YYYY-MM-DD_HH-MM-SS.log
+# Output will be streamed to console and saved to log-DD-MM-YYYY.log
 ```
 
 ### Output Files
-- `log-YYYY-MM-DD_HH-MM-SS.log`: Detailed execution log with hyperparameters, training progress, and results
+- `log-DD-MM-YYYY.log`: Detailed execution log with hyperparameters, training progress, and results
 - `{ModelName}_sample_predictions.png`: Sample prediction visualizations (8 images per model)
 - `{ModelName}_confusion_matrix.png`: Confusion matrices for each model
 - `{ModelName}_evaluation_figure.png`: Evaluation curves (accuracy, loss) per model
@@ -151,27 +179,6 @@ pandas>=2.3.0
 numpy>=2.3.0
 matplotlib>=3.10.0
 seaborn>=0.13.0
-```
-
-## 📊 Expected Results
-
-### Model Performance Ranking
-Based on typical performance with limited data (2% subset, 2-3 epochs):
-1. **VGG16**: ~63% accuracy (Best for small datasets)
-2. **ResNet50**: ~53% accuracy (Good balance)
-3. **InceptionV3**: ~42% accuracy (Requires more data)
-
-### Sample Output Log
-```
-2025-08-20 18:45:36 - INFO - ============================================================
-2025-08-20 18:45:36 - INFO - HYPERPARAMETER CONFIGURATION
-2025-08-20 18:45:36 - INFO - ============================================================
-2025-08-20 18:45:36 - INFO - IMG SIZE: (224, 224)
-2025-08-20 18:45:36 - INFO - BATCH SIZE: 16
-2025-08-20 18:45:36 - INFO - EPOCHS: 2
-2025-08-20 18:45:36 - INFO - LEARNING RATE: 0.001
-2025-08-20 18:45:36 - INFO - DROPOUT RATE: 0.5
-2025-08-20 18:45:36 - INFO - USE SUBSET: 0.015
 ```
 
 ### Performance Factors
@@ -193,7 +200,7 @@ Based on typical performance with limited data (2% subset, 2-3 epochs):
 - **Python**: 3.8+
 - **RAM**: 4GB minimum, 8GB recommended  
 - **Storage**: 2GB for dataset and models
-- **GPU**: Optional (CUDA-compatible for faster training)
+- **GPU**: Optional (CUDA-compatible for faster training) Sadly, I used MacBook Mini M2
 
 ## 🎯 Research Applications
 

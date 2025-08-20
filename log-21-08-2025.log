@@ -1,389 +1,46 @@
-2025-08-21 02:04:25,244 - INFO - Logging initialized - Log file: log-21-08-2025.log
-2025-08-21 02:04:25,245 - INFO - ============================================================
-2025-08-21 02:04:25,245 - INFO - HYPERPARAMETER CONFIGURATION
-2025-08-21 02:04:25,245 - INFO - ============================================================
-2025-08-21 02:04:25,245 - INFO - IMG SIZE: (224, 224)
-2025-08-21 02:04:25,245 - INFO - BATCH SIZE: 32
-2025-08-21 02:04:25,245 - INFO - EPOCHS: 1
-2025-08-21 02:04:25,245 - INFO - LEARNING RATE: 0.001
-2025-08-21 02:04:25,245 - INFO - DROPOUT RATE: 0.5
-2025-08-21 02:04:25,245 - INFO - USE SUBSET: 0.01
-2025-08-21 02:04:25,245 - INFO - MODELS: ['VGG16']
-2025-08-21 02:04:25,245 - INFO - PATIENCE: 2
-2025-08-21 02:04:25,245 - INFO - MIN LR: 1e-07
-2025-08-21 02:04:25,245 - INFO - LR FACTOR: 0.5
-2025-08-21 02:04:25,245 - INFO - ============================================================
-2025-08-21 02:04:25,245 - INFO - Starting X-Ray Fracture Classification Experiment
-2025-08-21 02:04:25,245 - INFO - ============================================================
-2025-08-21 02:04:25,245 - INFO - Loading dataset...
-2025-08-21 02:04:25,253 - INFO - Dataset loaded: 92 images
-2025-08-21 02:04:25,253 - INFO - Fractured: 46 | Non-fractured: 46
-2025-08-21 02:04:25,253 - INFO - Creating data generators...
-2025-08-21 02:04:25,262 - INFO - Training samples: 73
-2025-08-21 02:04:25,262 - INFO - Test samples: 19
-2025-08-21 02:04:25,262 - INFO - 
+2025-08-21 02:49:13,489 - INFO - Logging initialized - Log file: log-21-08-2025.log
+2025-08-21 02:49:13,489 - INFO - ============================================================
+2025-08-21 02:49:13,489 - INFO - HYPERPARAMETER CONFIGURATION
+2025-08-21 02:49:13,490 - INFO - ============================================================
+2025-08-21 02:49:13,490 - INFO - IMG SIZE: (224, 224)
+2025-08-21 02:49:13,490 - INFO - BATCH SIZE: 32
+2025-08-21 02:49:13,490 - INFO - EPOCHS: 1
+2025-08-21 02:49:13,490 - INFO - LEARNING RATE: 0.001
+2025-08-21 02:49:13,490 - INFO - DROPOUT RATE: 0.5
+2025-08-21 02:49:13,490 - INFO - USE SUBSET: 1.0
+2025-08-21 02:49:13,490 - INFO - MODELS: ['InceptionV3', 'ResNet50', 'VGG16', 'DenseNet121', 'MobileNetV2']
+2025-08-21 02:49:13,490 - INFO - PATIENCE: 2
+2025-08-21 02:49:13,490 - INFO - MIN LR: 1e-07
+2025-08-21 02:49:13,490 - INFO - LR FACTOR: 0.5
+2025-08-21 02:49:13,490 - INFO - ============================================================
+2025-08-21 02:49:13,490 - INFO - Starting X-Ray Fracture Classification Experiment
+2025-08-21 02:49:13,490 - INFO - ============================================================
+2025-08-21 02:49:13,490 - INFO - Loading dataset...
+2025-08-21 02:49:13,501 - INFO - Dataset loaded: 9300 images
+2025-08-21 02:49:13,501 - INFO - Fractured: 4650 | Non-fractured: 4650
+2025-08-21 02:49:13,501 - INFO - Creating data generators...
+2025-08-21 02:49:13,556 - INFO - Training samples: 7440
+2025-08-21 02:49:13,556 - INFO - Test samples: 1860
+2025-08-21 02:49:13,556 - INFO - 
 ============================================================
-2025-08-21 02:04:25,262 - INFO - Processing VGG16
-2025-08-21 02:04:25,262 - INFO - ============================================================
-2025-08-21 02:04:25,262 - INFO - Training VGG16...
-2025-08-21 02:04:25,262 - INFO - Creating VGG16 model...
-2025-08-21 02:05:40,458 - INFO - VGG16 training completed
-2025-08-21 02:05:40,459 - INFO - Evaluating VGG16...
-2025-08-21 02:05:45,740 - INFO - VGG16 Results:
-2025-08-21 02:05:45,741 - INFO -   Accuracy:  0.4737
-2025-08-21 02:05:45,741 - INFO -   Precision: 0.5000
-2025-08-21 02:05:45,741 - INFO -   Recall:    0.6000
-2025-08-21 02:05:45,741 - INFO -   F1-Score:  0.5455
-2025-08-21 02:05:45,741 - INFO - Generating sample predictions plot for VGG16...
-2025-08-21 02:05:47,141 - INFO - Sample predictions saved: VGG16_sample_predictions.png
-2025-08-21 02:05:47,141 - INFO - Generating confusion matrix for VGG16...
-2025-08-21 02:05:47,380 - INFO - Confusion matrix saved: VGG16_confusion_matrix.png
-2025-08-21 02:05:47,380 - INFO - Generating model comparison plots...
-2025-08-21 02:05:48,178 - INFO - Model comparison saved: model_comparison.png
-2025-08-21 02:05:48,178 - INFO - Creating comprehensive evaluation figure...
-2025-08-21 02:05:49,400 - INFO - Evaluation figure saved: evaluation_figure.png
-2025-08-21 02:05:49,401 - INFO - 
-2025-08-21 02:05:49,402 - INFO - ============================================================
-2025-08-21 02:05:49,402 - INFO - EVALUATION MATRICES
-2025-08-21 02:05:49,402 - INFO - ============================================================
-2025-08-21 02:05:49,403 - INFO - 
-VGG16:
-2025-08-21 02:05:49,403 - INFO - ------------------------------
-2025-08-21 02:05:49,403 - INFO - Accuracy:  0.4737
-2025-08-21 02:05:49,403 - INFO - Precision: 0.5000
-2025-08-21 02:05:49,403 - INFO - Recall:    0.6000
-2025-08-21 02:05:49,403 - INFO - F1-Score:  0.5455
-2025-08-21 02:05:49,403 - INFO - 
-2025-08-21 02:05:49,403 - INFO - ============================================================
-2025-08-21 02:05:49,403 - INFO - CLASSIFICATION RESULT COMPARISON
-2025-08-21 02:05:49,403 - INFO - ============================================================
-2025-08-21 02:05:49,403 - INFO - 1. VGG16           - Accuracy: 0.4737
-2025-08-21 02:05:49,403 - INFO - 
-🎯 Experiment completed successfully!
-2025-08-21 02:05:49,403 - INFO - Generated files:
-2025-08-21 02:05:49,403 - INFO - - Sample prediction plots for each model
-2025-08-21 02:05:49,403 - INFO - - Confusion matrices for each model
-2025-08-21 02:05:49,403 - INFO - - Model comparison chart
-2025-08-21 02:05:49,403 - INFO - - Detailed log file with all results
-2025-08-21 02:09:44,136 - INFO - Logging initialized - Log file: log-21-08-2025.log
-2025-08-21 02:09:44,137 - INFO - ============================================================
-2025-08-21 02:09:44,137 - INFO - HYPERPARAMETER CONFIGURATION
-2025-08-21 02:09:44,137 - INFO - ============================================================
-2025-08-21 02:09:44,137 - INFO - IMG SIZE: (224, 224)
-2025-08-21 02:09:44,137 - INFO - BATCH SIZE: 32
-2025-08-21 02:09:44,137 - INFO - EPOCHS: 1
-2025-08-21 02:09:44,137 - INFO - LEARNING RATE: 0.001
-2025-08-21 02:09:44,137 - INFO - DROPOUT RATE: 0.5
-2025-08-21 02:09:44,137 - INFO - USE SUBSET: 0.01
-2025-08-21 02:09:44,137 - INFO - MODELS: ['ResNet50']
-2025-08-21 02:09:44,137 - INFO - PATIENCE: 2
-2025-08-21 02:09:44,137 - INFO - MIN LR: 1e-07
-2025-08-21 02:09:44,137 - INFO - LR FACTOR: 0.5
-2025-08-21 02:09:44,137 - INFO - ============================================================
-2025-08-21 02:09:44,137 - INFO - Starting X-Ray Fracture Classification Experiment
-2025-08-21 02:09:44,137 - INFO - ============================================================
-2025-08-21 02:09:44,137 - INFO - Loading dataset...
-2025-08-21 02:09:44,175 - INFO - Dataset loaded: 92 images
-2025-08-21 02:09:44,175 - INFO - Fractured: 46 | Non-fractured: 46
-2025-08-21 02:09:44,175 - INFO - Creating data generators...
-2025-08-21 02:09:44,180 - INFO - Training samples: 73
-2025-08-21 02:09:44,181 - INFO - Test samples: 19
-2025-08-21 02:09:44,181 - INFO - 
+2025-08-21 02:49:13,556 - INFO - Processing InceptionV3
+2025-08-21 02:49:13,556 - INFO - ============================================================
+2025-08-21 02:49:13,556 - INFO - Training InceptionV3...
+2025-08-21 02:49:13,556 - INFO - Creating InceptionV3 model...
+2025-08-21 03:04:35,244 - INFO - InceptionV3 training completed
+2025-08-21 03:04:35,244 - INFO - Evaluating InceptionV3...
+2025-08-21 03:05:54,279 - INFO - InceptionV3 Results:
+2025-08-21 03:05:54,279 - INFO -   Accuracy:  0.9070
+2025-08-21 03:05:54,279 - INFO -   Precision: 0.9490
+2025-08-21 03:05:54,279 - INFO -   Recall:    0.8602
+2025-08-21 03:05:54,279 - INFO -   F1-Score:  0.9024
+2025-08-21 03:05:54,279 - INFO - Generating sample predictions plot for InceptionV3...
+2025-08-21 03:05:55,310 - INFO - Sample predictions saved: output/InceptionV3_sample_predictions.png
+2025-08-21 03:05:55,310 - INFO - Creating evaluation figure for InceptionV3...
+2025-08-21 03:05:55,707 - INFO - Evaluation figure saved: output/InceptionV3_evaluation_figure.png
+2025-08-21 03:05:55,707 - INFO - 
 ============================================================
-2025-08-21 02:09:44,181 - INFO - Processing ResNet50
-2025-08-21 02:09:44,181 - INFO - ============================================================
-2025-08-21 02:09:44,181 - INFO - Training ResNet50...
-2025-08-21 02:09:44,181 - INFO - Creating ResNet50 model...
-2025-08-21 02:10:20,724 - INFO - ResNet50 training completed
-2025-08-21 02:10:20,725 - INFO - Evaluating ResNet50...
-2025-08-21 02:10:22,795 - INFO - ResNet50 Results:
-2025-08-21 02:10:22,795 - INFO -   Accuracy:  0.5263
-2025-08-21 02:10:22,795 - INFO -   Precision: 0.5263
-2025-08-21 02:10:22,795 - INFO -   Recall:    1.0000
-2025-08-21 02:10:22,795 - INFO -   F1-Score:  0.6897
-2025-08-21 02:10:22,795 - INFO - Generating sample predictions plot for ResNet50...
-2025-08-21 02:10:24,304 - INFO - Sample predictions saved: ResNet50_sample_predictions.png
-2025-08-21 02:10:24,305 - INFO - Generating confusion matrix for ResNet50...
-2025-08-21 02:10:24,595 - INFO - Confusion matrix saved: ResNet50_confusion_matrix.png
-2025-08-21 02:10:24,595 - INFO - Generating model comparison plots...
-2025-08-21 02:10:25,253 - INFO - Model comparison saved: model_comparison.png
-2025-08-21 02:10:25,254 - INFO - Creating comprehensive evaluation figure...
-2025-08-21 02:10:26,118 - INFO - Evaluation figure saved: evaluation_figure.png
-2025-08-21 02:10:26,118 - INFO - 
-2025-08-21 02:10:26,120 - INFO - ============================================================
-2025-08-21 02:10:26,120 - INFO - EVALUATION MATRICES
-2025-08-21 02:10:26,120 - INFO - ============================================================
-2025-08-21 02:10:26,122 - INFO - 
-ResNet50:
-2025-08-21 02:10:26,123 - INFO - ------------------------------
-2025-08-21 02:10:26,133 - INFO - Accuracy:  0.5263
-2025-08-21 02:10:26,134 - INFO - Precision: 0.5263
-2025-08-21 02:10:26,134 - INFO - Recall:    1.0000
-2025-08-21 02:10:26,134 - INFO - F1-Score:  0.6897
-2025-08-21 02:10:26,134 - INFO - 
-2025-08-21 02:10:26,134 - INFO - ============================================================
-2025-08-21 02:10:26,134 - INFO - CLASSIFICATION RESULT COMPARISON
-2025-08-21 02:10:26,134 - INFO - ============================================================
-2025-08-21 02:10:26,134 - INFO - 1. ResNet50        - Accuracy: 0.5263
-2025-08-21 02:10:26,134 - INFO - 
-🎯 Experiment completed successfully!
-2025-08-21 02:10:26,134 - INFO - Generated files:
-2025-08-21 02:10:26,134 - INFO - - Sample prediction plots for each model
-2025-08-21 02:10:26,134 - INFO - - Confusion matrices for each model
-2025-08-21 02:10:26,134 - INFO - - Model comparison chart
-2025-08-21 02:10:26,135 - INFO - - Detailed log file with all results
-2025-08-21 02:20:57,348 - INFO - Logging initialized - Log file: log-21-08-2025.log
-2025-08-21 02:20:57,348 - INFO - ============================================================
-2025-08-21 02:20:57,348 - INFO - HYPERPARAMETER CONFIGURATION
-2025-08-21 02:20:57,348 - INFO - ============================================================
-2025-08-21 02:20:57,349 - INFO - IMG SIZE: (224, 224)
-2025-08-21 02:20:57,349 - INFO - BATCH SIZE: 32
-2025-08-21 02:20:57,349 - INFO - EPOCHS: 1
-2025-08-21 02:20:57,349 - INFO - LEARNING RATE: 0.001
-2025-08-21 02:20:57,349 - INFO - DROPOUT RATE: 0.5
-2025-08-21 02:20:57,349 - INFO - USE SUBSET: 0.01
-2025-08-21 02:20:57,349 - INFO - MODELS: ['InceptionV3', 'ResNet50', 'VGG16']
-2025-08-21 02:20:57,349 - INFO - PATIENCE: 2
-2025-08-21 02:20:57,349 - INFO - MIN LR: 1e-07
-2025-08-21 02:20:57,349 - INFO - LR FACTOR: 0.5
-2025-08-21 02:20:57,349 - INFO - ============================================================
-2025-08-21 02:20:57,349 - INFO - Starting X-Ray Fracture Classification Experiment
-2025-08-21 02:20:57,349 - INFO - ============================================================
-2025-08-21 02:20:57,349 - INFO - Loading dataset...
-2025-08-21 02:20:57,357 - INFO - Dataset loaded: 92 images
-2025-08-21 02:20:57,357 - INFO - Fractured: 46 | Non-fractured: 46
-2025-08-21 02:20:57,357 - INFO - Creating data generators...
-2025-08-21 02:20:57,365 - INFO - Training samples: 73
-2025-08-21 02:20:57,365 - INFO - Test samples: 19
-2025-08-21 02:20:57,365 - INFO - 
-============================================================
-2025-08-21 02:20:57,365 - INFO - Processing InceptionV3
-2025-08-21 02:20:57,365 - INFO - ============================================================
-2025-08-21 02:20:57,365 - INFO - Training InceptionV3...
-2025-08-21 02:20:57,365 - INFO - Creating InceptionV3 model...
-2025-08-21 02:21:23,125 - INFO - InceptionV3 training completed
-2025-08-21 02:21:23,125 - INFO - Evaluating InceptionV3...
-2025-08-21 02:21:25,014 - INFO - InceptionV3 Results:
-2025-08-21 02:21:25,014 - INFO -   Accuracy:  0.7368
-2025-08-21 02:21:25,014 - INFO -   Precision: 0.6667
-2025-08-21 02:21:25,014 - INFO -   Recall:    1.0000
-2025-08-21 02:21:25,014 - INFO -   F1-Score:  0.8000
-2025-08-21 02:21:25,014 - INFO - Generating sample predictions plot for InceptionV3...
-2025-08-21 02:21:26,685 - INFO - Sample predictions saved: output/InceptionV3_sample_predictions.png
-2025-08-21 02:21:26,685 - INFO - Generating confusion matrix for InceptionV3...
-2025-08-21 02:21:27,008 - INFO - Confusion matrix saved: output/InceptionV3_confusion_matrix.png
-2025-08-21 02:21:27,008 - INFO - Creating evaluation figure for InceptionV3...
-2025-08-21 02:21:27,771 - INFO - Evaluation figure saved: output/InceptionV3_evaluation_figure.png
-2025-08-21 02:21:27,771 - INFO - 
-============================================================
-2025-08-21 02:21:27,771 - INFO - Processing ResNet50
-2025-08-21 02:21:27,771 - INFO - ============================================================
-2025-08-21 02:21:27,771 - INFO - Training ResNet50...
-2025-08-21 02:21:27,771 - INFO - Creating ResNet50 model...
-2025-08-21 02:22:04,359 - INFO - ResNet50 training completed
-2025-08-21 02:22:04,360 - INFO - Evaluating ResNet50...
-2025-08-21 02:22:06,531 - INFO - ResNet50 Results:
-2025-08-21 02:22:06,531 - INFO -   Accuracy:  0.4737
-2025-08-21 02:22:06,531 - INFO -   Precision: 0.0000
-2025-08-21 02:22:06,531 - INFO -   Recall:    0.0000
-2025-08-21 02:22:06,531 - INFO -   F1-Score:  0.0000
-2025-08-21 02:22:06,531 - INFO - Generating sample predictions plot for ResNet50...
-2025-08-21 02:22:08,065 - INFO - Sample predictions saved: output/ResNet50_sample_predictions.png
-2025-08-21 02:22:08,069 - INFO - Generating confusion matrix for ResNet50...
-2025-08-21 02:22:08,321 - INFO - Confusion matrix saved: output/ResNet50_confusion_matrix.png
-2025-08-21 02:22:08,321 - INFO - Creating evaluation figure for ResNet50...
-2025-08-21 02:22:09,085 - INFO - Evaluation figure saved: output/ResNet50_evaluation_figure.png
-2025-08-21 02:22:09,085 - INFO - 
-============================================================
-2025-08-21 02:22:09,085 - INFO - Processing VGG16
-2025-08-21 02:22:09,085 - INFO - ============================================================
-2025-08-21 02:22:09,085 - INFO - Training VGG16...
-2025-08-21 02:22:09,085 - INFO - Creating VGG16 model...
-2025-08-21 02:24:00,439 - INFO - Logging initialized - Log file: log-21-08-2025.log
-2025-08-21 02:24:00,439 - INFO - ============================================================
-2025-08-21 02:24:00,439 - INFO - HYPERPARAMETER CONFIGURATION
-2025-08-21 02:24:00,439 - INFO - ============================================================
-2025-08-21 02:24:00,439 - INFO - IMG SIZE: (224, 224)
-2025-08-21 02:24:00,439 - INFO - BATCH SIZE: 32
-2025-08-21 02:24:00,439 - INFO - EPOCHS: 1
-2025-08-21 02:24:00,439 - INFO - LEARNING RATE: 0.001
-2025-08-21 02:24:00,439 - INFO - DROPOUT RATE: 0.5
-2025-08-21 02:24:00,439 - INFO - USE SUBSET: 0.01
-2025-08-21 02:24:00,440 - INFO - MODELS: ['InceptionV3']
-2025-08-21 02:24:00,440 - INFO - PATIENCE: 2
-2025-08-21 02:24:00,440 - INFO - MIN LR: 1e-07
-2025-08-21 02:24:00,440 - INFO - LR FACTOR: 0.5
-2025-08-21 02:24:00,440 - INFO - ============================================================
-2025-08-21 02:24:00,440 - INFO - Starting X-Ray Fracture Classification Experiment
-2025-08-21 02:24:00,440 - INFO - ============================================================
-2025-08-21 02:24:00,440 - INFO - Loading dataset...
-2025-08-21 02:24:00,447 - INFO - Dataset loaded: 92 images
-2025-08-21 02:24:00,447 - INFO - Fractured: 46 | Non-fractured: 46
-2025-08-21 02:24:00,447 - INFO - Creating data generators...
-2025-08-21 02:24:00,452 - INFO - Training samples: 73
-2025-08-21 02:24:00,452 - INFO - Test samples: 19
-2025-08-21 02:24:00,452 - INFO - 
-============================================================
-2025-08-21 02:24:00,452 - INFO - Processing InceptionV3
-2025-08-21 02:24:00,452 - INFO - ============================================================
-2025-08-21 02:24:00,452 - INFO - Training InceptionV3...
-2025-08-21 02:24:00,452 - INFO - Creating InceptionV3 model...
-2025-08-21 02:24:14,223 - INFO - InceptionV3 training completed
-2025-08-21 02:24:14,223 - INFO - Evaluating InceptionV3...
-2025-08-21 02:24:15,255 - INFO - InceptionV3 Results:
-2025-08-21 02:24:15,255 - INFO -   Accuracy:  0.5789
-2025-08-21 02:24:15,256 - INFO -   Precision: 0.7500
-2025-08-21 02:24:15,256 - INFO -   Recall:    0.3000
-2025-08-21 02:24:15,256 - INFO -   F1-Score:  0.4286
-2025-08-21 02:24:15,256 - INFO - Generating sample predictions plot for InceptionV3...
-2025-08-21 02:24:16,263 - INFO - Sample predictions saved: output/InceptionV3_sample_predictions.png
-2025-08-21 02:24:16,263 - INFO - Generating confusion matrix for InceptionV3...
-2025-08-21 02:24:16,440 - INFO - Confusion matrix saved: output/InceptionV3_confusion_matrix.png
-2025-08-21 02:24:16,440 - INFO - Creating evaluation figure for InceptionV3...
-2025-08-21 02:24:16,832 - INFO - Evaluation figure saved: output/InceptionV3_evaluation_figure.png
-2025-08-21 02:24:16,832 - INFO - Creating grid visualizations for README...
-2025-08-21 02:24:17,148 - INFO - Grid visualizations saved to output directory
-2025-08-21 02:24:17,148 - INFO - 
-2025-08-21 02:24:17,148 - INFO - ============================================================
-2025-08-21 02:24:17,148 - INFO - EVALUATION MATRICES
-2025-08-21 02:24:17,148 - INFO - ============================================================
-2025-08-21 02:24:17,148 - INFO - 
-InceptionV3:
-2025-08-21 02:24:17,148 - INFO - ------------------------------
-2025-08-21 02:24:17,148 - INFO - Accuracy:  0.5789
-2025-08-21 02:24:17,149 - INFO - Precision: 0.7500
-2025-08-21 02:24:17,149 - INFO - Recall:    0.3000
-2025-08-21 02:24:17,149 - INFO - F1-Score:  0.4286
-2025-08-21 02:24:17,149 - INFO - 
-2025-08-21 02:24:17,149 - INFO - ============================================================
-2025-08-21 02:24:17,149 - INFO - CLASSIFICATION RESULT COMPARISON
-2025-08-21 02:24:17,149 - INFO - ============================================================
-2025-08-21 02:24:17,149 - INFO - 1. InceptionV3     - Accuracy: 0.5789
-2025-08-21 02:24:17,149 - INFO - 
-🎯 Experiment completed successfully!
-2025-08-21 02:24:17,149 - INFO - Generated files:
-2025-08-21 02:24:17,149 - INFO - - Sample prediction plots for each model
-2025-08-21 02:24:17,149 - INFO - - Confusion matrices for each model
-2025-08-21 02:24:17,149 - INFO - - Model comparison chart
-2025-08-21 02:24:17,149 - INFO - - Detailed log file with all results
-2025-08-21 02:39:29,338 - INFO - Logging initialized - Log file: log-21-08-2025.log
-2025-08-21 02:39:29,339 - INFO - ============================================================
-2025-08-21 02:39:29,339 - INFO - HYPERPARAMETER CONFIGURATION
-2025-08-21 02:39:29,339 - INFO - ============================================================
-2025-08-21 02:39:29,339 - INFO - IMG SIZE: (224, 224)
-2025-08-21 02:39:29,339 - INFO - BATCH SIZE: 32
-2025-08-21 02:39:29,339 - INFO - EPOCHS: 1
-2025-08-21 02:39:29,339 - INFO - LEARNING RATE: 0.001
-2025-08-21 02:39:29,339 - INFO - DROPOUT RATE: 0.5
-2025-08-21 02:39:29,339 - INFO - USE SUBSET: 0.01
-2025-08-21 02:39:29,339 - INFO - MODELS: ['VGG16', 'MobileNetV2', 'DenseNet121']
-2025-08-21 02:39:29,339 - INFO - PATIENCE: 2
-2025-08-21 02:39:29,339 - INFO - MIN LR: 1e-07
-2025-08-21 02:39:29,339 - INFO - LR FACTOR: 0.5
-2025-08-21 02:39:29,339 - INFO - ============================================================
-2025-08-21 02:39:29,339 - INFO - Starting X-Ray Fracture Classification Experiment
-2025-08-21 02:39:29,339 - INFO - ============================================================
-2025-08-21 02:39:29,339 - INFO - Loading dataset...
-2025-08-21 02:39:29,374 - INFO - Dataset loaded: 92 images
-2025-08-21 02:39:29,374 - INFO - Fractured: 46 | Non-fractured: 46
-2025-08-21 02:39:29,374 - INFO - Creating data generators...
-2025-08-21 02:39:29,385 - INFO - Training samples: 73
-2025-08-21 02:39:29,386 - INFO - Test samples: 19
-2025-08-21 02:39:29,386 - INFO - 
-============================================================
-2025-08-21 02:39:29,386 - INFO - Processing VGG16
-2025-08-21 02:39:29,386 - INFO - ============================================================
-2025-08-21 02:39:29,386 - INFO - Training VGG16...
-2025-08-21 02:39:29,386 - INFO - Creating VGG16 model...
-2025-08-21 02:40:14,678 - INFO - VGG16 training completed
-2025-08-21 02:40:14,678 - INFO - Evaluating VGG16...
-2025-08-21 02:40:17,106 - INFO - VGG16 Results:
-2025-08-21 02:40:17,107 - INFO -   Accuracy:  0.4737
-2025-08-21 02:40:17,107 - INFO -   Precision: 0.0000
-2025-08-21 02:40:17,107 - INFO -   Recall:    0.0000
-2025-08-21 02:40:17,107 - INFO -   F1-Score:  0.0000
-2025-08-21 02:40:17,107 - INFO - Generating sample predictions plot for VGG16...
-2025-08-21 02:40:18,038 - INFO - Sample predictions saved: output/VGG16_sample_predictions.png
-2025-08-21 02:40:18,038 - INFO - Generating confusion matrix for VGG16...
-2025-08-21 02:40:18,201 - INFO - Confusion matrix saved: output/VGG16_confusion_matrix.png
-2025-08-21 02:40:18,201 - INFO - Creating evaluation figure for VGG16...
-2025-08-21 02:40:18,553 - INFO - Evaluation figure saved: output/VGG16_evaluation_figure.png
-2025-08-21 02:40:18,553 - INFO - 
-============================================================
-2025-08-21 02:40:18,553 - INFO - Processing MobileNetV2
-2025-08-21 02:40:18,553 - INFO - ============================================================
-2025-08-21 02:40:18,553 - INFO - Training MobileNetV2...
-2025-08-21 02:40:18,553 - INFO - Creating MobileNetV2 model...
-2025-08-21 02:40:26,960 - INFO - MobileNetV2 training completed
-2025-08-21 02:40:26,960 - INFO - Evaluating MobileNetV2...
-2025-08-21 02:40:27,453 - INFO - MobileNetV2 Results:
-2025-08-21 02:40:27,453 - INFO -   Accuracy:  0.9474
-2025-08-21 02:40:27,453 - INFO -   Precision: 1.0000
-2025-08-21 02:40:27,453 - INFO -   Recall:    0.9000
-2025-08-21 02:40:27,453 - INFO -   F1-Score:  0.9474
-2025-08-21 02:40:27,453 - INFO - Generating sample predictions plot for MobileNetV2...
-2025-08-21 02:40:28,411 - INFO - Sample predictions saved: output/MobileNetV2_sample_predictions.png
-2025-08-21 02:40:28,411 - INFO - Generating confusion matrix for MobileNetV2...
-2025-08-21 02:40:28,576 - INFO - Confusion matrix saved: output/MobileNetV2_confusion_matrix.png
-2025-08-21 02:40:28,576 - INFO - Creating evaluation figure for MobileNetV2...
-2025-08-21 02:40:28,991 - INFO - Evaluation figure saved: output/MobileNetV2_evaluation_figure.png
-2025-08-21 02:40:28,991 - INFO - 
-============================================================
-2025-08-21 02:40:28,991 - INFO - Processing DenseNet121
-2025-08-21 02:40:28,991 - INFO - ============================================================
-2025-08-21 02:40:28,991 - INFO - Training DenseNet121...
-2025-08-21 02:40:28,991 - INFO - Creating DenseNet121 model...
-2025-08-21 02:40:52,945 - INFO - DenseNet121 training completed
-2025-08-21 02:40:52,946 - INFO - Evaluating DenseNet121...
-2025-08-21 02:40:54,473 - INFO - DenseNet121 Results:
-2025-08-21 02:40:54,473 - INFO -   Accuracy:  0.5263
-2025-08-21 02:40:54,473 - INFO -   Precision: 0.5263
-2025-08-21 02:40:54,473 - INFO -   Recall:    1.0000
-2025-08-21 02:40:54,473 - INFO -   F1-Score:  0.6897
-2025-08-21 02:40:54,473 - INFO - Generating sample predictions plot for DenseNet121...
-2025-08-21 02:40:55,488 - INFO - Sample predictions saved: output/DenseNet121_sample_predictions.png
-2025-08-21 02:40:55,489 - INFO - Generating confusion matrix for DenseNet121...
-2025-08-21 02:40:55,649 - INFO - Confusion matrix saved: output/DenseNet121_confusion_matrix.png
-2025-08-21 02:40:55,649 - INFO - Creating evaluation figure for DenseNet121...
-2025-08-21 02:40:56,033 - INFO - Evaluation figure saved: output/DenseNet121_evaluation_figure.png
-2025-08-21 02:40:56,033 - INFO - Creating grid visualizations for README...
-2025-08-21 02:40:56,621 - INFO - Grid visualizations saved to output directory
-2025-08-21 02:40:56,622 - INFO - 
-2025-08-21 02:40:56,622 - INFO - ============================================================
-2025-08-21 02:40:56,622 - INFO - EVALUATION MATRICES
-2025-08-21 02:40:56,622 - INFO - ============================================================
-2025-08-21 02:40:56,622 - INFO - 
-VGG16:
-2025-08-21 02:40:56,622 - INFO - ------------------------------
-2025-08-21 02:40:56,622 - INFO - Accuracy:  0.4737
-2025-08-21 02:40:56,622 - INFO - Precision: 0.0000
-2025-08-21 02:40:56,622 - INFO - Recall:    0.0000
-2025-08-21 02:40:56,622 - INFO - F1-Score:  0.0000
-2025-08-21 02:40:56,623 - INFO - 
-MobileNetV2:
-2025-08-21 02:40:56,623 - INFO - ------------------------------
-2025-08-21 02:40:56,623 - INFO - Accuracy:  0.9474
-2025-08-21 02:40:56,623 - INFO - Precision: 1.0000
-2025-08-21 02:40:56,623 - INFO - Recall:    0.9000
-2025-08-21 02:40:56,623 - INFO - F1-Score:  0.9474
-2025-08-21 02:40:56,623 - INFO - 
-DenseNet121:
-2025-08-21 02:40:56,623 - INFO - ------------------------------
-2025-08-21 02:40:56,623 - INFO - Accuracy:  0.5263
-2025-08-21 02:40:56,623 - INFO - Precision: 0.5263
-2025-08-21 02:40:56,623 - INFO - Recall:    1.0000
-2025-08-21 02:40:56,623 - INFO - F1-Score:  0.6897
-2025-08-21 02:40:56,623 - INFO - 
-2025-08-21 02:40:56,623 - INFO - ============================================================
-2025-08-21 02:40:56,623 - INFO - CLASSIFICATION RESULT COMPARISON
-2025-08-21 02:40:56,623 - INFO - ============================================================
-2025-08-21 02:40:56,623 - INFO - 1. MobileNetV2     - Accuracy: 0.9474
-2025-08-21 02:40:56,623 - INFO - 2. DenseNet121     - Accuracy: 0.5263
-2025-08-21 02:40:56,623 - INFO - 3. VGG16           - Accuracy: 0.4737
-2025-08-21 02:40:56,623 - INFO - 
-🎯 Experiment completed successfully!
-2025-08-21 02:40:56,623 - INFO - Generated files:
-2025-08-21 02:40:56,623 - INFO - - Sample prediction plots for each model
-2025-08-21 02:40:56,623 - INFO - - Confusion matrices for each model
-2025-08-21 02:40:56,623 - INFO - - Model comparison chart
-2025-08-21 02:40:56,623 - INFO - - Detailed log file with all results
+2025-08-21 03:05:55,707 - INFO - Processing ResNet50
+2025-08-21 03:05:55,707 - INFO - ============================================================
+2025-08-21 03:05:55,707 - INFO - Training ResNet50...
+2025-08-21 03:05:55,707 - INFO - Creating ResNet50 model...
